@@ -1,0 +1,10 @@
+#!/bin/perl
+ 
+use warnings;
+use Business::ISBN;
+
+my $book_isbn = Business::ISBN->new('9781449393090');
+printf "%-20s : %s\n%-20s : %s\n%-20s : %s\n", 
+             "ISBN"           => $book_isbn->as_string, 
+             "Group Code"     => $book_isbn->group_code,
+             "Publisher Code" => $book_isbn -> publisher_code;
