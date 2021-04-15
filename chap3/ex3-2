@@ -1,0 +1,23 @@
+#!/bin/perl
+
+use warnings;
+$search_dir = "/etc";
+chomp(@files =  `ls -a $search_dir`);
+
+while(<STDIN>) {
+    chomp;
+    last if(/\A\s*\Z/);
+    
+    print "Search for $_\n";
+    foreach $file (@files) {
+        eval {
+            if(  $file =~ /$_/ ) {
+                print "$file\n";
+            }
+        };
+        if($@) {
+            warn $@;
+            last;
+        }
+    }
+}
